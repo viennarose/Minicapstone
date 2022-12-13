@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary ms-2 text-dark" data-bs-dismiss="modal">Close</button>
                 <button class="btn btn-primary" wire:click="setAppointment()">Save changes</button>
                 </div>
                 <div wire:loading wire:target='setAppointment'>

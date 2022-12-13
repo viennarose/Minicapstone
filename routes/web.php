@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\IndexController;
@@ -13,6 +14,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes(['verify' => true]);
+Route::view('/appointment-success', 'appointment-success')->name('appointment.success');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,6 +40,13 @@ Route::middleware(['auth', 'verified', 'role:admin'])->name('admin.')->prefix('a
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 });
 
+Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
+    Route::get('/home', [FrontendController::class, 'home'])->name('home');
+    Route::get('/services', [FrontendController::class, 'services'])->name('services');
+    Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+    Route::get('/about', [FrontendController::class, 'about'])->name('about');
+    Route::get('/set-appointment', [FrontendController::class, 'setappointment'])->name('set-appointment');
+});
 require __DIR__ . '/auth.php';
 
 

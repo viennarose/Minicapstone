@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
+use App\Mail\AppointmentMailable;
 use Illuminate\Support\Facades\Mail;
 
 class Index extends Component
@@ -70,8 +71,8 @@ class Index extends Component
             //'refNum' => $this->refNum,
             'refNum' => $refNum ,
         ]);
-        // Mail::to($this->email)->send(new AppointmentMailable
-        // ($this->firstName, $this->lastName, $this->schedule, $refNum));
+        Mail::to($this->email)->send(new AppointmentMailable
+        ($this->firstName, $this->lastName, $this->schedule, $refNum));
         session()->flash('message','Appointment Added Successfully');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');

@@ -1,8 +1,6 @@
 <x-admin-layout>
     <livewire:admin.appointments.index>
-</x-admin-layout>
-
-@section('script')
+        @section('script')
 <script>
     window.addEventListener('close-modal', event => {
         $('#appointmentModal').modal('hide');
@@ -42,3 +40,6 @@
         })
     </script>
 @endsection
+</x-admin-layout>
+
+
